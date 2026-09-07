@@ -4,11 +4,11 @@ from pages.navbar_page import NavbarPage
 from pages.register_user_page import RegistrationPage
 
 
-def test_register_user(page: Page, logged_in):
+def test_register_user(page: Page, setup_browser):
     register_user_page = RegistrationPage(page)
     navbar_page = NavbarPage(page)
 
-    login_user_page = logged_in
+    login_user_page = setup_browser
 
     navbar_page.go_to_signup()
 
@@ -17,7 +17,7 @@ def test_register_user(page: Page, logged_in):
     # register_user_page.go_to_login()
 
     register_user_page.verify_new_user_signup()
-    register_user_page.signup("junuel", "junueljonn@gmail.com")
+    register_user_page.signup("junuel", "junueljon6@gmail.com")
 
     register_user_page.verify_enter_account_info()
 

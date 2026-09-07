@@ -13,8 +13,6 @@ class RegistrationPage:
             "heading", name="Enter Account Information"
         )
 
-        self.register_login_link = page.get_by_role("link", name="Signup / Login")
-
         self.register_name_input = page.locator("[data-qa='signup-name']")
 
         self.register_email_input = page.locator("[data-qa='signup-email']")
@@ -99,9 +97,6 @@ class RegistrationPage:
     def verify_signup_error(self):
         expect(self.signup_error_message).to_be_visible()
         expect(self.signup_error_message).to_have_text("Email Address already exist!")
-
-    # def go_to_login(self):
-    #     self.register_login_link.click()
 
     def signup(self, name: str, email: str):
         self.register_name_input.fill(name)

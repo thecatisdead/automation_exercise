@@ -9,8 +9,8 @@ from pages.subscription_page import SubscribePage
 # =========================================================================
 
 
-def test_verify_subscription_homepage(page: Page, launch_browser):
-    login_user_page = launch_browser
+def test_verify_subscription_homepage(page: Page, setup_browser):
+    login_user_page = setup_browser
     navbar_page = NavbarPage(page)
     subscription_page = SubscribePage(page)
 
@@ -27,8 +27,8 @@ def test_verify_subscription_homepage(page: Page, launch_browser):
 # =========================================================================
 
 
-def test_verify_subscription_cartpage(page: Page, launch_browser):
-    login_user_page = launch_browser
+def test_verify_subscription_cartpage(page: Page, setup_browser):
+    login_user_page = setup_browser
     navbar_page = NavbarPage(page)
     subscription_page = SubscribePage(page)
 

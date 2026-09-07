@@ -30,9 +30,9 @@ def test_login_correct_user(page: Page):
 # =========================================================================
 
 
-def test_login_incorrect_user(page: Page, launch_browser):
+def test_login_incorrect_user(page: Page, setup_browser):
     register_user_page = RegistrationPage(page)
-    login_user_page = launch_browser
+    login_user_page = setup_browser
 
     login_user_page.go_to_login()
 
@@ -50,9 +50,9 @@ def test_login_incorrect_user(page: Page, launch_browser):
 # =========================================================================
 
 
-def test_logout_user(page: Page, launch_browser):
+def test_logout_user(page: Page, setup_browser):
     register_user_page = RegistrationPage(page)
-    login_user_page = launch_browser
+    login_user_page = setup_browser
 
     login_user_page.go_to_login()
 

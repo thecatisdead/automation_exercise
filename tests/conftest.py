@@ -7,7 +7,7 @@ from pages.navbar_page import NavbarPage
 
 
 @pytest.fixture
-def launch_browser(page: Page):
+def setup_browser(page: Page):
     login_user_page = LoginPage(page)
 
     navbar_page = NavbarPage(page)

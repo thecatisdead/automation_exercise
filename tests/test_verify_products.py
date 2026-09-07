@@ -8,8 +8,8 @@ from pages.products_page import ProductsPage
 # =========================================================================
 
 
-def test_verify_products_details(page: Page, launch_browser):
-    login_user_page = launch_browser
+def test_verify_products_details(page: Page, setup_browser):
+    login_user_page = setup_browser
 
     navbar_page = NavbarPage(page)
     products_page = ProductsPage(page)
@@ -28,8 +28,8 @@ def test_verify_products_details(page: Page, launch_browser):
 # =========================================================================
 
 
-def test_search_product(page: Page, launch_browser):
-    login_user_page = launch_browser
+def test_search_product(page: Page, setup_browser):
+    login_user_page = setup_browser
 
     navbar_page = NavbarPage(page)
 
