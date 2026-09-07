@@ -17,7 +17,7 @@ def test_register_user(page: Page, setup_browser):
     # register_user_page.go_to_login()
 
     register_user_page.verify_new_user_signup()
-    register_user_page.signup("junuel", "junueljon7@gmail.com")
+    register_user_page.signup("junuel", "junueljon8@gmail.com")
 
     register_user_page.verify_enter_account_info()
 
@@ -46,8 +46,8 @@ def test_register_user(page: Page, setup_browser):
 
     register_user_page.click_continue_button()
 
-    # register_user_page.delete_account()
+    register_user_page.delete_account()
 
-    # register_user_page.verify_account_deleted()
+    register_user_page.verify_account_deleted()
 
-    # register_user_page.click_continue_button()
+    register_user_page.click_continue_button()
