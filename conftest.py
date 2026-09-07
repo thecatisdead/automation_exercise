@@ -5,20 +5,21 @@ from playwright.sync_api import Page, sync_playwright
 from pages.login_user_page import LoginPage
 from pages.navbar_page import NavbarPage
 
-# @pytest.fixture
-# def page():
-#     with sync_playwright() as p:
-#         browser = p.chromium.launch(
-#             executable_path="/usr/bin/brave-browser",
-#             headless=False,
-#             slow_mo=800,
-#         )
 
-#         page = browser.new_page()
-#         yield page
+@pytest.fixture
+def page():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(
+            # executable_path="/usr/bin/brave-browser",
+            headless=False,
+            slow_mo=800,
+        )
 
-#         # input("Press Enter to close...")
-#         browser.close()
+        page = browser.new_page()
+        yield page
+
+        # input("Press Enter to close...")
+        browser.close()
 
 
 @pytest.fixture
