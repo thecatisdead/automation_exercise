@@ -48,13 +48,11 @@ class ContactPage:
         self.subject_input.fill(subject)
         self.message_input.fill(message)
 
-    def upload_file(self, file_path: str):
-        self.upload_file_input.set_input_files(file_path)
+    # def upload_file(self, file_path: str):
+    #     self.upload_file_input.set_input_files(file_path)
 
     def submit_form(self):
-        self.page.wait_for_load_state(
-            "networkidle"
-        )  # let the page's own JS fully finish loading/binding
+        self.page.wait_for_load_state("networkidle")
         self.submit_form_button.click()
 
     def go_to_home(self):

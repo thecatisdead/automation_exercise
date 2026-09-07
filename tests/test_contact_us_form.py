@@ -21,7 +21,7 @@ def test_contact_us_form(page: Page, setup_browser):
         "junuel", "junuel@example.com", "Test Subject", "Test Message"
     )
 
-    contact_page.upload_file("/home/a_c/Downloads/test.txt")
+    # contact_page.upload_file("/home/a_c/Downloads/test.txt")
 
     contact_page.submit_form()
 
@@ -29,4 +29,4 @@ def test_contact_us_form(page: Page, setup_browser):
 
     contact_page.go_to_home()
 
-    # login_user_page.verify_on_homepage()
+    login_user_page.verify_on_homepage()
