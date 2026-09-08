@@ -105,6 +105,10 @@ class AddProductsPage:
 
         self.pay_button = page.locator('[data-qa="pay-button"]')
 
+        self.remove_product_button = page.locator('[data-product-id="1"]')
+
+        self.cart_empty = page.get_by_text("Cart is empty!")
+
     def add_first_product_to_cart(self):
         self.first_product.hover()
 
@@ -208,6 +212,8 @@ class AddProductsPage:
         self.expiry_year_input.fill(expiry_year)
         self.pay_button.click()
 
-    # def pay_confirm_button(self):
+    def remove_product(self):
+        self.remove_product_button.click()
 
-    # self.pay_button = page.get_by_role("button", name="pay-button")
+    def verify_product_is_removed(self):
+        expect(self.cart_empty).to_be_visible()
