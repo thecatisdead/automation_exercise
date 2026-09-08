@@ -18,7 +18,7 @@ def test_place_order_register_while_checkout(page: Page, setup_browser):
     products_page.proceed_to_checkout()
     products_page.register_login()
 
-    register_user_page.signup("junuel", "junueljon125@gmail.com")
+    register_user_page.signup("junuel", "junueljon127@gmail.com")
 
     register_user_page.male_radio.check()
 

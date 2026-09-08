@@ -17,7 +17,7 @@ def test_register_user(page: Page, setup_browser):
     # register_user_page.go_to_login()
 
     register_user_page.verify_new_user_signup()
-    register_user_page.signup("junuel", "junueljon8@gmail.com")
+    register_user_page.signup("junuel", "junueljon301@gmail.com")
 
     register_user_page.verify_enter_account_info()
 
