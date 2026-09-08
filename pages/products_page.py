@@ -109,6 +109,18 @@ class AddProductsPage:
 
         self.cart_empty = page.get_by_text("Cart is empty!")
 
+        self.categories = page.locator("#accordian")
+
+        self.women_category = page.get_by_role("link", name="Women")
+
+        self.women_panel = page.locator("#Women")
+
+        self.category_dress_link = page.locator('a[href="/category_products/1"]')
+
+        self.women_dress_products_heading = page.locator(
+            "h2", has_text="Women - Dress Products"
+        )
+
     def add_first_product_to_cart(self):
         self.first_product.hover()
 
@@ -217,3 +229,18 @@ class AddProductsPage:
 
     def verify_product_is_removed(self):
         expect(self.cart_empty).to_be_visible()
+
+    def verify_categories_visible(self):
+        expect(self.categories).to_be_visible()
+
+    def open_women_category(self):
+        self.women_category.click()
+
+    def verify_women_category_expanded(self):
+        expect(self.women_panel).to_be_visible()
+
+    def category_dress(self):
+        self.category_dress_link.click()
+
+    def verify_women_dress_heading(self):
+        expect(self.women_dress_products_heading).to_be_visible()
