@@ -8,7 +8,7 @@ from pages.navbar_page import NavbarPage
 def test_contact_us_form(page: Page, setup_browser):
 
     login_user_page = setup_browser
-
+    login_user_page = LoginPage(page)
     contact_page = ContactPage(page)
 
     # navbar_page = NavbarPage(page)
