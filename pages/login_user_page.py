@@ -13,7 +13,7 @@ class LoginPage:
             "Your email or password is incorrect!"
         )
 
-        # self.login_register_link = page.get_by_role("link", name="Signup / Login")
+        self.login_register_link = page.get_by_role("link", name="Signup / Login")
 
         self.login_email_input = page.locator("[data-qa='login-email']")
 
@@ -24,6 +24,12 @@ class LoginPage:
         self.logged_in_user = page.locator("a").filter(has_text="Logged in as")
 
         self.logout_user_link = page.get_by_role("link", name="Logout")
+
+    def navigate(self):
+        self.page.goto("https://automationexercise.com/")
+
+    def go_to_login(self):
+        self.login_register_link.click()
 
     def verify_on_homepage(self):
         expect(self.page).to_have_url("https://automationexercise.com/", timeout=10000)
