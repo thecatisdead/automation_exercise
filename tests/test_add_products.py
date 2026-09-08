@@ -17,6 +17,7 @@ def test_add_products_cart(page: Page, setup_browser):
     navbar_page.go_to_products()
 
     products_page.add_first_product_to_cart()
+    products_page.continue_shopping()
 
     products_page.add_second_product_to_cart()
     products_page.view_cart_page()

@@ -50,12 +50,16 @@ class AddProductsPage:
     def __init__(self, page: Page):
         self.page = page
 
-        self.first_product = page.locator(".product-image-wrapper").filter(
-            has=page.locator('[data-product-id="1"]')
+        self.first_product = (
+            page.locator(".product-image-wrapper")
+            .filter(has=page.locator('[data-product-id="1"]'))
+            .first
         )
 
-        self.second_product = page.locator(".product-image-wrapper").filter(
-            has=page.locator('[data-product-id="2"]')
+        self.second_product = (
+            page.locator(".product-image-wrapper")
+            .filter(has=page.locator('[data-product-id="2"]'))
+            .first
         )
 
         self.continue_shopping_button = page.get_by_role(
@@ -78,10 +82,35 @@ class AddProductsPage:
             ".cart_quantity button", has_text="4"
         )
 
+        self.proceed_to_checkout_button = page.locator("a.check_out")
+        self.register_login_link = page.get_by_role("link", name="Register / Login")
+
+        self.verify_delivery_address = page.locator("#address_delivery")
+
+        self.verify_order_review = page.locator("table.table.table-condensed")
+
+        self.enter_description_message = page.locator('textarea[name="message"]')
+
+        self.place_order_button = page.get_by_role("link", name="Place Order")
+
+        self.name_on_card_input = page.locator('[data-qa="name-on-card"]')
+
+        self.card_number_input = page.locator('[data-qa="card-number"]')
+
+        self.cvc_input = page.locator('[data-qa="cvc"]')
+
+        self.expiry_month_input = page.locator('[data-qa="expiry-month"]')
+
+        self.expiry_year_input = page.locator('[data-qa="expiry-year"]')
+
+        self.pay_button = page.locator('[data-qa="pay-button"]')
+
     def add_first_product_to_cart(self):
         self.first_product.hover()
 
         self.first_product.locator('.product-overlay [data-product-id="1"]').click()
+
+    def continue_shopping(self):
         self.continue_shopping_button.click()
 
     def add_second_product_to_cart(self):
@@ -136,3 +165,49 @@ class AddProductsPage:
 
     def verify_products_quantity_in_cart(self):
         expect(self.verify_product_displayed_cart).to_be_visible()
+
+    def verify_view_cart_page(self):
+        expect(self.page).to_have_url("https://automationexercise.com/view_cart")
+
+    def proceed_to_checkout(self):
+        self.proceed_to_checkout_button.click()
+
+    def register_login(self):
+        self.register_login_link.click()
+
+    def verify_delivery(self):
+        expect(self.verify_delivery_address).to_contain_text("Mr. junuel dizon")
+        expect(self.verify_delivery_address).to_contain_text("ABC Company")
+        expect(self.verify_delivery_address).to_contain_text("123 Main St")
+        expect(self.verify_delivery_address).to_contain_text("Apt 4B")
+        expect(self.verify_delivery_address).to_contain_text("New York NY 10001")
+        expect(self.verify_delivery_address).to_contain_text("United States")
+        expect(self.verify_delivery_address).to_contain_text("09121475678")
+
+    def verify_order(self):
+        expect(self.verify_order_review).to_contain_text("Blue Top")
+        expect(self.verify_order_review).to_contain_text("1")
+        expect(self.verify_order_review).to_contain_text("Rs. 500")
+
+    def message_place_order(self):
+        self.enter_description_message.fill("Please deliver carefully.")
+        self.place_order_button.click()
+
+    def payment(
+        self,
+        name_on_card: str,
+        card_number: str,
+        cvc: str,
+        expiry_month: str,
+        expiry_year: str,
+    ):
+        self.name_on_card_input.fill(name_on_card)
+        self.card_number_input.fill(card_number)
+        self.cvc_input.fill(cvc)
+        self.expiry_month_input.fill(expiry_month)
+        self.expiry_year_input.fill(expiry_year)
+        self.pay_button.click()
+
+    # def pay_confirm_button(self):
+
+    # self.pay_button = page.get_by_role("button", name="pay-button")
