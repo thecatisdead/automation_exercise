@@ -2,6 +2,7 @@ import pytest
 from playwright.sync_api import Page
 from pages.navbar_page import NavbarPage
 from pages.products_page import ProductsPage
+from pages.products_page import AddProductsPage
 
 # =========================================================================
 # TEST CASE 8: VERIFY ALL PRODUCTS
@@ -9,7 +10,7 @@ from pages.products_page import ProductsPage
 
 
 def test_verify_products_details(page: Page, setup_browser):
-    login_user_page = setup_browser
+    setup_browser
 
     navbar_page = NavbarPage(page)
     products_page = ProductsPage(page)
@@ -29,11 +30,13 @@ def test_verify_products_details(page: Page, setup_browser):
 
 
 def test_search_product(page: Page, setup_browser):
-    login_user_page = setup_browser
+    setup_browser
 
     navbar_page = NavbarPage(page)
 
     products_page = ProductsPage(page)
+
+    products_page = AddProductsPage(page)
 
     navbar_page.go_to_products()
 

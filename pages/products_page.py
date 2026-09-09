@@ -19,12 +19,10 @@ class ProductsPage:
 
         self.products_brand = page.locator("p").filter(has_text="Brand:")
 
-        self.search_product_input = page.get_by_placeholder("Search Product")
+        self.write_your_review = page.get_by_role("link", name="Write Your Review")
 
-        self.search_button = page.locator("#submit_search")
-        self.searched_products_heading = page.locator(
-            "h2", has_text="Searched Products"
-        )
+    def verify_write_your_review(self):
+        expect(self.write_your_review).to_be_visible()
 
     def verify_on_product_details_page(self):
         expect(self.page).to_have_url(
@@ -36,11 +34,6 @@ class ProductsPage:
         expect(self.products_availability).to_be_visible()
         expect(self.products_condition).to_be_visible()
         expect(self.products_brand).to_have_text("Brand: Polo")
-
-    def search_product(self, product_name: str):
-        self.search_product_input.fill(product_name)
-        self.search_button.click()
-        expect(self.searched_products_heading).to_be_visible()
 
     def view_first_product_details(self):
         self.view_first_product_link.click()
@@ -124,6 +117,22 @@ class AddProductsPage:
 
         self.men_tshirts_products_heading = page.locator(
             "h2", has_text="Men - Tshirts Products"
+        )
+
+        self.search_product_input = page.get_by_placeholder("Search Product")
+
+        self.search_button = page.locator("#submit_search")
+
+        # self.searched_products_heading = page.get_by_role(
+        #     "h2", name="Searched Products"
+        # )
+
+        self.search_blue_top = page.locator(".single-products").filter(
+            has_text="Blue Top"
+        )
+
+        self.search_men_tshirt = page.locator(".single-products").filter(
+            has_text="Men Tshirt"
         )
 
     def add_first_product_to_cart(self):
@@ -275,3 +284,49 @@ class AddProductsPage:
             "https://automationexercise.com/category_products/3"
         )
         expect(self.men_tshirts_products_heading).to_be_visible()
+
+    def search_product(self, product_name: str):
+        self.search_product_input.fill(product_name)
+
+    def search_click_button(self):
+        self.search_button.click()
+
+    # Skipped Part. fix later the assertions
+    # def verify_searched_products_heading(self):
+    #     expect(self.searched_products_heading).to_be_visible()
+
+    def verify_search_blue_top(self):
+        expect(self.search_blue_top).to_be_visible()
+        expect(self.search_blue_top.locator(".productinfo h2")).to_have_text("Rs. 500")
+        expect(self.search_blue_top.locator(".productinfo p")).to_have_text("Blue Top")
+
+    def verify_search_men_tshirt(self):
+        expect(self.search_men_tshirt).to_be_visible()
+        expect(self.search_men_tshirt.locator(".productinfo h2")).to_have_text(
+            "Rs. 400"
+        )
+        expect(self.search_men_tshirt.locator(".productinfo p")).to_have_text(
+            "Men Tshirt"
+        )
+
+
+class ProductReviewPage:
+    def __init__(self, page: Page):
+        self.page = page
+
+        self.review_name_input = page.get_by_placeholder("Your Name")
+        self.review_email_input = page.get_by_placeholder("Email Address", exact=True)
+        self.review_textarea = page.get_by_placeholder("Add Review Here!")
+        self.submit_review_button = page.get_by_role("button", name="Submit")
+        self.review_success_message = page.get_by_text("Thank you for your review.")
+
+    def fill_review_form(
+        self, review_name: str, review_email: str, review_textarea: str
+    ):
+        self.review_name_input.fill(review_name)
+        self.review_email_input.fill(review_email)
+        self.review_textarea.fill(review_textarea)
+        self.submit_review_button.click()
+
+    def verify_review_success_message(self):
+        expect(self.review_success_message).to_be_visible()

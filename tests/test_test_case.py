@@ -4,7 +4,7 @@ from pages.navbar_page import NavbarPage
 
 
 def test_test_case(page: Page, setup_browser):
-    login_user_page = setup_browser
+    setup_browser
 
     navbar_page = NavbarPage(page)
 

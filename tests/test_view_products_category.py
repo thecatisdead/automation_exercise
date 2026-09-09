@@ -5,7 +5,7 @@ from pages.products_page import AddProductsPage
 from pages.register_user_page import RegistrationPage
 
 
-def test_place_order_register_while_checkout(page: Page, setup_browser):
+def test_view_cart_brand_products(page: Page, setup_browser):
     login_user_page = setup_browser
 
     navbar_page = NavbarPage(page)

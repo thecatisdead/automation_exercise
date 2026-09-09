@@ -14,7 +14,7 @@ class NavbarPage:
         )
         # self.nav_contact_us_link = page.get_by_role("link", name="Contact us")
 
-        self.nav_cart_link = page.get_by_role("link", name="Cart")
+        self.nav_cart_link = page.get_by_role("link", name="Cart", exact=True)
 
         self.nav_products_link = page.get_by_role("link", name="Products")
 
