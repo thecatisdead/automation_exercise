@@ -6,7 +6,7 @@ from pages.register_user_page import RegistrationPage
 from pages.login_user_page import LoginPage
 
 
-def test_place_order_register_before_checkout(page: Page, setup_browser):
+def test_place_order_login_before_checkout(page: Page, setup_browser):
     login_user_page = setup_browser
 
     navbar_page = NavbarPage(page)

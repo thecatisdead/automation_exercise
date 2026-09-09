@@ -6,7 +6,7 @@ from pages.register_user_page import RegistrationPage
 
 
 def test_view_cart_brand_products(page: Page, setup_browser):
-    login_user_page = setup_browser
+    setup_browser
 
     navbar_page = NavbarPage(page)
     products_page = AddProductsPage(page)
