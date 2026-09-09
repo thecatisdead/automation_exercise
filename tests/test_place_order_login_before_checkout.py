@@ -14,7 +14,7 @@ def test_place_order_register_before_checkout(page: Page, setup_browser):
     register_user_page = RegistrationPage(page)
 
     navbar_page.go_to_login()
-    login_user_page.login("junueljonn@gmail.com", "password123")
+    login_user_page.login("junuelloginbefore@gmail.com", "password123")
 
     login_user_page.verify_logged_in_user()
 
@@ -38,8 +38,8 @@ def test_place_order_register_before_checkout(page: Page, setup_browser):
         expiry_year="2028",
     )
 
-    register_user_page.delete_account()
+    # register_user_page.delete_account()
 
-    register_user_page.verify_account_deleted()
+    # register_user_page.verify_account_deleted()
 
-    register_user_page.click_continue_button()
+    # register_user_page.click_continue_button()

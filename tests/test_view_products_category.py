@@ -17,3 +17,8 @@ def test_place_order_register_while_checkout(page: Page, setup_browser):
     products_page.verify_women_category_expanded()
     products_page.category_dress()
     products_page.verify_women_dress_heading()
+
+    products_page.open_men_category()
+    products_page.verify_men_category_expanded()
+    products_page.category_tshirts()
+    products_page.verify_men_tshirts_heading()

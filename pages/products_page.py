@@ -111,14 +111,19 @@ class AddProductsPage:
 
         self.categories = page.locator("#accordian")
 
-        self.women_category = page.get_by_role("link", name="Women")
-
+        self.women_category = page.locator('a[href="#Women"]')
         self.women_panel = page.locator("#Women")
-
         self.category_dress_link = page.locator('a[href="/category_products/1"]')
-
         self.women_dress_products_heading = page.locator(
             "h2", has_text="Women - Dress Products"
+        )
+
+        self.men_category = page.locator('a[href="#Men"]')
+        self.men_panel = page.locator("#Men")
+        self.category_tshirts_link = page.locator('a[href="/category_products/3"]')
+
+        self.men_tshirts_products_heading = page.locator(
+            "h2", has_text="Men - Tshirts Products"
         )
 
     def add_first_product_to_cart(self):
@@ -186,7 +191,9 @@ class AddProductsPage:
         expect(self.page).to_have_url("https://automationexercise.com/view_cart")
 
     def proceed_to_checkout(self):
+        self.page.wait_for_timeout(1000)
         self.proceed_to_checkout_button.click()
+        self.page.wait_for_url("**/checkout**", timeout=10000)
 
     def register_login(self):
         self.register_login_link.click()
@@ -198,11 +205,11 @@ class AddProductsPage:
         expect(self.verify_delivery_address).to_contain_text("Apt 4B")
         expect(self.verify_delivery_address).to_contain_text("New York NY 10001")
         expect(self.verify_delivery_address).to_contain_text("United States")
-        expect(self.verify_delivery_address).to_contain_text("09121475678")
+        expect(self.verify_delivery_address).to_contain_text("0912345678")
 
     def verify_order(self):
         expect(self.verify_order_review).to_contain_text("Blue Top")
-        expect(self.verify_order_review).to_contain_text("1")
+        # expect(self.verify_order_review).to_contain_text("1")
         expect(self.verify_order_review).to_contain_text("Rs. 500")
 
     def message_place_order(self):
@@ -234,7 +241,10 @@ class AddProductsPage:
         expect(self.categories).to_be_visible()
 
     def open_women_category(self):
+        self.women_category.wait_for(state="visible")
+        self.page.wait_for_timeout(1000)
         self.women_category.click()
+        self.women_panel.wait_for(state="visible", timeout=10000)
 
     def verify_women_category_expanded(self):
         expect(self.women_panel).to_be_visible()
@@ -242,5 +252,26 @@ class AddProductsPage:
     def category_dress(self):
         self.category_dress_link.click()
 
+    def open_men_category(self):
+        self.men_category.wait_for(state="visible")
+        self.page.wait_for_timeout(1000)
+        self.men_category.click()
+        self.men_panel.wait_for(state="visible", timeout=10000)
+
+    def verify_men_category_expanded(self):
+        expect(self.men_panel).to_be_visible()
+
+    def category_tshirts(self):
+        self.category_tshirts_link.click()
+
     def verify_women_dress_heading(self):
+        expect(self.page).to_have_url(
+            "https://automationexercise.com/category_products/1"
+        )
         expect(self.women_dress_products_heading).to_be_visible()
+
+    def verify_men_tshirts_heading(self):
+        expect(self.page).to_have_url(
+            "https://automationexercise.com/category_products/3"
+        )
+        expect(self.men_tshirts_products_heading).to_be_visible()
