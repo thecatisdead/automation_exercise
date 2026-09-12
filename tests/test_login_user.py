@@ -2,27 +2,30 @@ import pytest
 from playwright.sync_api import Page
 from pages.login_user_page import LoginPage
 from pages.register_user_page import RegistrationPage
+from pages.navbar_page import NavbarPage
 
 
 # =========================================================================
 # TEST CASE 2: CORRECT LOGIN
 # =========================================================================
-def test_login_correct_user(page: Page):
-    register_user_page = RegistrationPage(page)
+def test_login_correct_user(page: Page, setup_browser):
 
+    setup_browser
     login_user_page = LoginPage(page)
+    navbar_page = NavbarPage(page)
 
-    login_user_page.navigate()
-    login_user_page.go_to_login()
+    navbar_page.go_to_login_signup()
+
     login_user_page.verify_login_page()
 
     login_user_page.login("junueljonn@gmail.com", "password123")
 
     login_user_page.verify_logged_in_user()
 
-    # register_user_page.delete_account()
 
-    # register_user_page.verify_account_deleted()
+# register_user_page.delete_account()
+
+# register_user_page.verify_account_deleted()
 
 
 # =========================================================================
@@ -31,14 +34,14 @@ def test_login_correct_user(page: Page):
 
 
 def test_login_incorrect_user(page: Page, setup_browser):
-    register_user_page = RegistrationPage(page)
-    login_user_page = setup_browser
+    setup_browser
+    RegistrationPage(page)
+    login_user_page = LoginPage(page)
+    navbar_page = NavbarPage(page)
 
-    login_user_page.go_to_login()
+    navbar_page.go_to_login_signup()
 
     login_user_page.verify_login_page()
-
-    login_user_page = LoginPage(page)
 
     login_user_page.login("junuelincorrect@gmail.com", "password123")
 
@@ -51,14 +54,12 @@ def test_login_incorrect_user(page: Page, setup_browser):
 
 
 def test_logout_user(page: Page, setup_browser):
-    register_user_page = RegistrationPage(page)
-    login_user_page = setup_browser
-
-    login_user_page.go_to_login()
-
-    login_user_page.verify_login_page()
-
+    setup_browser
+    RegistrationPage(page)
     login_user_page = LoginPage(page)
+    navbar_page = NavbarPage(page)
+
+    navbar_page.go_to_login_signup()
 
     login_user_page.verify_login_page()
 
@@ -66,6 +67,6 @@ def test_logout_user(page: Page, setup_browser):
 
     login_user_page.verify_logged_in_user()
 
-    login_user_page.logout_user()
+    navbar_page.logout_user()
 
     login_user_page.verify_login_page()
