@@ -32,16 +32,16 @@ def test_search_product(page: Page, setup_browser):
     setup_browser
 
     navbar_page = NavbarPage(page)
-    products_page = AddProductsPage(page)
+    add_products_page = AddProductsPage(page)
 
     navbar_page.go_to_products()
 
     navbar_page.verify_on_products_page()
 
-    products_page.search_product("Men Tshirt")
+    add_products_page.search_product("Men Tshirt")
 
-    products_page.search_click_button()
+    add_products_page.search_click_button()
 
-    expect(products_page.search_product_input).to_have_value("Men Tshirt")
+    expect(add_products_page.search_product_input).to_have_value("Men Tshirt")
 
-    products_page.verify_searched_products_heading()
+    add_products_page.verify_searched_products_heading()
