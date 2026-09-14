@@ -15,11 +15,7 @@ def test_register_user(page: Page, setup_browser, user_info, delete_account):
     navbar_page = NavbarPage(page)
 
     navbar_page.go_to_login_signup()
-
     register_user_page.verify_new_user_signup()
-
-    register_user_page.signup("junuel", "junuelregisterusertest105@gmail.com")
-
+    register_user_page.signup("junuel", "junuelregisterusertest106@gmail.com")
     user_info()
-
     delete_account()

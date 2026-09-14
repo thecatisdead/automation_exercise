@@ -22,20 +22,12 @@ def test_place_order_register_before_checkout(
     CheckoutPage(page)
 
     navbar_page.go_to_login_signup()
-    register_user_page.signup("junuel", "junueljon415@gmail.com")
-
+    register_user_page.signup("junuel", "junueljon416@gmail.com")
     user_info()
-
     login_user_page.verify_logged_in_user()
-
     add_products_page.add_first_product_to_cart()
-
     add_products_page.view_cart_page()
-
     cart_page.verify_view_cart_page()
-
     delivery_address()
-
     card_info()
-
     delete_account()

@@ -27,17 +27,10 @@ def test_place_order_register_while_checkout(
     cart_page.verify_view_cart_page()
     cart_page.proceed_to_checkout_no_account()
     navbar_page.register_login()
-
-    register_user_page.signup("junuel", "junueljon145@gmail.com")
-
+    register_user_page.signup("junuel", "junueljon147@gmail.com")
     user_info()
-
     login_user_page.verify_logged_in_user()
-
     navbar_page.go_to_cart()
-
     delivery_address()
-
     card_info()
-
     delete_account()

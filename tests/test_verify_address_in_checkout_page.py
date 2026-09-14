@@ -22,20 +22,12 @@ def test_verify_address_details_in_checkout_page(
     CheckoutPage(page)
 
     register_user_page.verify_new_user_signup()
-    register_user_page.signup("junuel", "junuelverifyaddresscheckout10@gmail.com")
-
+    register_user_page.signup("junuel", "junuelverifyaddresscheckout101@gmail.com")
     user_info()
-
     login_user_page.verify_logged_in_user()
-
     add_products_page.add_first_product_to_cart()
-
     add_products_page.view_cart_page()
-
     cart_page.verify_view_cart_page()
-
     delivery_address()
-
     card_info()
-
     delete_account()
