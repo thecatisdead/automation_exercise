@@ -9,16 +9,15 @@ from pages.subscription_page import SubscribePage
 # =========================================================================
 
 
-# def test_verify_subscription_homepage(page: Page, setup_browser):
-#     setup_browser
-#     NavbarPage(page)
-#     subscription_page = SubscribePage(page)
+def test_verify_subscription_homepage(page: Page, setup_browser):
+    setup_browser
+    NavbarPage(page)
+    subscription_page = SubscribePage(page)
 
-#     subscription_page.scroll_to_footer()
-#     subscription_page.verify_subscription()
-
-#     subscription_page.subscribe_email("johndoe@gmail.com")
-#     subscription_page.verify_subscription_success()
+    subscription_page.scroll_to_footer()
+    subscription_page.verify_subscription()
+    subscription_page.subscribe_email("johndoe@gmail.com")
+    subscription_page.verify_subscription_success()
 
 
 # =========================================================================
@@ -32,9 +31,7 @@ def test_verify_subscription_cartpage(page: Page, setup_browser):
     subscription_page = SubscribePage(page)
 
     navbar_page.go_to_cart()
-
     subscription_page.scroll_to_footer()
     subscription_page.verify_subscription()
-
     subscription_page.subscribe_email("johndoe@gmail.com")
     subscription_page.verify_subscription_success()
