@@ -58,4 +58,4 @@ def test_logout_user(page: Page, setup_browser):
     login_user_page.login("junueljonn@gmail.com", "password123")
     login_user_page.verify_logged_in_user()
     navbar_page.logout_user()
-    login_user_page.verify_login_page()
+    navbar_page.verify_login_page()
