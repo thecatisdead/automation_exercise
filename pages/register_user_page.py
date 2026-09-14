@@ -13,7 +13,7 @@ class RegistrationPage:
         self.register_name_input = page.locator("[data-qa='signup-name']")
         self.register_email_input = page.locator("[data-qa='signup-email']")
         self.register_button = page.locator("[data-qa='signup-button']")
-        self.signup_error_message = page.get_by_text("Email Address aleady exist!")
+        self.signup_error_message = page.get_by_text("Email Address already exist!")
 
         self.male_radio = page.locator("#id_gender1")
         self.female_radio = page.locator("#id_gender2")

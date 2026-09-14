@@ -15,11 +15,8 @@ def test_login_correct_user(page: Page, setup_browser):
     navbar_page = NavbarPage(page)
 
     navbar_page.go_to_login_signup()
-
-    login_user_page.verify_login_page()
-
+    navbar_page.verify_login_page()
     login_user_page.login("junueljonn@gmail.com", "password123")
-
     login_user_page.verify_logged_in_user()
 
 
@@ -40,11 +37,8 @@ def test_login_incorrect_user(page: Page, setup_browser):
     navbar_page = NavbarPage(page)
 
     navbar_page.go_to_login_signup()
-
-    login_user_page.verify_login_page()
-
+    navbar_page.verify_login_page()
     login_user_page.login("junuelincorrect@gmail.com", "password123")
-
     login_user_page.verify_logged_in_user_incorrect()
 
 
@@ -60,13 +54,8 @@ def test_logout_user(page: Page, setup_browser):
     navbar_page = NavbarPage(page)
 
     navbar_page.go_to_login_signup()
-
-    login_user_page.verify_login_page()
-
+    navbar_page.verify_login_page()
     login_user_page.login("junueljonn@gmail.com", "password123")
-
     login_user_page.verify_logged_in_user()
-
     navbar_page.logout_user()
-
     login_user_page.verify_login_page()
