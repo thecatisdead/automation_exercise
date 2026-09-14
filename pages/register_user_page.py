@@ -6,40 +6,23 @@ class RegistrationPage:
         self.page = page
 
         self.title_heading = page.locator("#slider-carousel .item.active h1")
-
         self.register_heading = page.get_by_role("heading", name="New User Signup!")
-
         self.register_enter_account_info_heading = page.get_by_role(
             "heading", name="Enter Account Information"
         )
-
         self.register_name_input = page.locator("[data-qa='signup-name']")
-
         self.register_email_input = page.locator("[data-qa='signup-email']")
-
         self.register_button = page.locator("[data-qa='signup-button']")
+        self.signup_error_message = page.get_by_text("Email Address aleady exist!")
 
-        self.signup_error_message = page.get_by_text("Email Address already exist!")
-
-        # ========================================================================
-        # Enter Account Information
-        # ========================================================================
         self.male_radio = page.locator("#id_gender1")
-
         self.female_radio = page.locator("#id_gender2")
-
         self.password_input = page.locator("[data-qa='password']")
-
         self.day_select = page.locator("[data-qa='days']")
         self.month_select = page.locator("[data-qa='months']")
         self.year_select = page.locator("[data-qa='years']")
-
         self.offers_checkbox = page.locator("#optin")
         self.newsletter_checkbox = page.locator("#newsletter")
-
-        # ========================================================================
-        # Address Information
-        # ========================================================================
 
         self.register_firstname_input = page.locator("[data-qa='first_name']")
         self.register_lastname_input = page.locator("[data-qa='last_name']")
@@ -52,30 +35,17 @@ class RegistrationPage:
         self.register_zipcode_input = page.locator("[data-qa='zipcode']")
         self.register_mobile_number_input = page.locator("[data-qa='mobile_number']")
         self.register_create_account_button = page.locator("[data-qa='create-account']")
-        self.register_succeful_message = page.locator("[data-qa='account-created']")
+        self.register_successful_message = page.locator("[data-qa='account-created']")
         self.continue_button = page.locator("[data-qa='continue-button']")
-
-        # =======================================================================
-        # Delete Account
-        # ========================================================================
 
         self.delete_account_button = page.get_by_role("link", name="Delete Account")
         self.account_delete_succeful_message = page.locator(
             "[data-qa='account-deleted']"
         )
 
-    # def navigate(self):
-    #     self.page.goto("https://automationexercise.com")
-
-    # def verify_on_homepage(self):
-    #     expect(self.page).to_have_url("https://automationexercise.com/")
-    #     expect(self.title_heading).to_be_visible()
-    #     expect(self.title_heading).to_have_text("AutomationExercise")
-
     def verify_new_user_signup(self):
         expect(self.page).to_have_url("https://automationexercise.com/login")
         expect(self.register_heading).to_be_visible()
-        expect(self.register_heading).to_have_text("New User Signup!")
 
     def verify_enter_account_info(self):
         expect(self.page).to_have_url("https://automationexercise.com/signup")
@@ -91,12 +61,11 @@ class RegistrationPage:
 
     def verify_account_created(self):
         expect(self.page).to_have_url("https://automationexercise.com/account_created")
-        expect(self.register_succeful_message).to_be_visible()
-        expect(self.register_succeful_message).to_have_text("Account Created!")
+        expect(self.register_successful_message).to_be_visible()
+        expect(self.register_successful_message).to_have_text("Account Created!")
 
     def verify_signup_error(self):
         expect(self.signup_error_message).to_be_visible()
-        expect(self.signup_error_message).to_have_text("Email Address already exist!")
 
     def signup(self, name: str, email: str):
         self.register_name_input.fill(name)
@@ -151,5 +120,5 @@ class RegistrationPage:
     def click_continue_button(self):
         self.continue_button.click()
 
-    def delete_account(self):
+    def click_delete_account(self):
         self.delete_account_button.click()

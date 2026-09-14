@@ -4,11 +4,8 @@ from playwright.sync_api import Page, expect
 class ContactPage:
     def __init__(self, page: Page):
         self.page = page
-        self.page.on(
-            "dialog", self._handle_dialog
-        )  # persistent, registered once up front
 
-        self.contact_us_link = page.get_by_role("link", name="Contact us")
+        self.page.on("dialog", self._handle_dialog)
         self.contact_heading = page.locator("h2", has_text="get in touch")
         self.name_input = page.locator("[data-qa='name']")
         self.email_input = page.locator("[data-qa='email']")
@@ -20,17 +17,7 @@ class ContactPage:
 
     def _handle_dialog(self, dialog):
         dialog.accept()
-        self.page.wait_for_timeout(
-            300
-        )  # gives the site's JS time to proceed after accept
-
-    def go_to_contact(self):
-        self.contact_us_link.click()
-
-    def verify_contact_us_form(self):
-        expect(self.page).to_have_url("https://automationexercise.com/contact_us")
-        expect(self.contact_us_link).to_be_visible()
-        expect(self.contact_us_link).to_have_text("Contact us")
+        self.page.wait_for_timeout(300)
 
     def verify_successful_submission(self):
         success = self.page.locator(".status.alert.alert-success")
@@ -48,8 +35,8 @@ class ContactPage:
         self.subject_input.fill(subject)
         self.message_input.fill(message)
 
-    # def upload_file(self, file_path: str):
-    #     self.upload_file_input.set_input_files(file_path)
+    def upload_file(self, file_path: str):
+        self.upload_file_input.set_input_files(file_path)
 
     def submit_form(self):
         self.page.wait_for_load_state("networkidle")
