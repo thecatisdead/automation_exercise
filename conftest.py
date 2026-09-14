@@ -127,7 +127,7 @@ def card_info(page: Page):
 def delete_account(page: Page):
     def _delete_account():
         register_user_page = RegistrationPage(page)
-        register_user_page.delete_account()
+        register_user_page.click_delete_account()
         register_user_page.verify_account_deleted()
         register_user_page.click_continue_button()
 
