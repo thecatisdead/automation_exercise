@@ -23,8 +23,8 @@ def test_add_review_on_product(page: Page, setup_browser):
 
     products_page.fill_review_form(
         review_name="Junuel",
-        review_email="junueldizon@gmail.com",
-        review_textarea="I like this product",
+        review_email="junueljonn@gmail.com",
+        review_textarea="I liked this product",
     )
 
     products_page.verify_review_success_message()
