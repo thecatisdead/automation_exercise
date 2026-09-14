@@ -1,7 +1,8 @@
 import pytest
 from playwright.sync_api import Page, expect
 from pages.navbar_page import NavbarPage
-from pages.products_page import ProductsPage, AddProductsPage
+from pages.products_page import ProductsPage
+from pages.add_products_page import AddProductsPage
 
 # =========================================================================
 # TEST CASE 8: VERIFY ALL PRODUCTS
@@ -15,11 +16,8 @@ def test_verify_products_details(page: Page, setup_browser):
     products_page = ProductsPage(page)
 
     navbar_page.go_to_products()
-
     navbar_page.verify_on_products_page()
-
     products_page.view_first_product_details()
-
     products_page.verify_on_product_details_page()
 
 
@@ -32,16 +30,11 @@ def test_search_product(page: Page, setup_browser):
     setup_browser
 
     navbar_page = NavbarPage(page)
-    add_products_page = AddProductsPage(page)
+    products_page = ProductsPage(page)
 
     navbar_page.go_to_products()
-
     navbar_page.verify_on_products_page()
-
-    add_products_page.search_product("Men Tshirt")
-
-    add_products_page.search_click_button()
-
-    expect(add_products_page.search_product_input).to_have_value("Men Tshirt")
-
-    add_products_page.verify_searched_products_heading()
+    products_page.search_product("Men Tshirt")
+    products_page.verify_search_input_value("Men Tshirt")
+    products_page.search_click_button()
+    products_page.verify_searched_products_heading()
