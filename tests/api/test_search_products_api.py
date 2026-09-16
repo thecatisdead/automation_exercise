@@ -2,6 +2,10 @@ import pytest
 import json
 from api.search_products_api import SearchProductsAPI
 
+# =========================================================================
+# API 5: POST TO SEARCH PRODUCT
+# =========================================================================
+
 
 @pytest.fixture
 def search_products_api():
@@ -22,3 +26,19 @@ def test_search_product(search_products_api):
             "top" in product["name"].lower()
             or "top" in product["category"]["category"].lower()
         )
+
+
+# =========================================================================
+# API 6: POST TO SEARCH PRODUCT WITHOUT SEARCH PRODUCT PARAMETER
+# =========================================================================
+
+
+def test_search_product_missing_param(search_products_api):
+    response = search_products_api.post_search_product_missing_param()
+
+    response_data = response.json()
+    assert response_data["responseCode"] == 400
+    assert (
+        response_data["message"]
+        == "Bad request, search_product parameter is missing in POST request."
+    )
