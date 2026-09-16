@@ -10,3 +10,9 @@ class SearchProductsAPI:
             f"{self.BASE_URL}/searchProduct",
             data={"search_product": search_term},
         )
+
+    def post_search_product_missing_param(self):
+
+        return requests.post(
+            f"{self.BASE_URL}/searchProduct",
+        )
