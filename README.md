@@ -10,6 +10,7 @@ A personal QA automation project built for learning.
 * Requests
 * GitHub Actions
 * Git
+* Docker
 
 ## What I Practiced
 
